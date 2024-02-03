@@ -2,43 +2,56 @@ import java.time.LocalDate;
 import java.util.*;
 
 import clients.*;
+import clinic.VeterinaryClinic;
+import personal.Doctor;
+import personal.Nurse;
+import personal.Personal;
 
 public class Main {
 
     public static void main(String[] args) {
-/*
-1) Добавить в класс Animal публичные методы двигаться(toGo), летать(fly), плавать(swim).
-2) Создать по два класса
-наследника Animal, умеющих летать, плавать, бегать(животное может как уметь что-то одно, так и все сразу).
-3) В main добиться того, чтобы при вызове метода действия, которое конкретное животное не умеет, оно этого не делало (кошки не летают, рыбы не ходят)
-4) В файле readme.md в репозитории гитхаб описать
-какие проблемы в таком проектировании Вы увидели,
-а также там же написать возникшие при выполнении дз вопросы
- */
-
-        Animal cat1 = new Cat("Барсик", new Owner("Стив Остин"),
+        Animal cat = new Cat("Барсик", new Owner("Стив Остин"),
                 LocalDate.of(2018, 3, 5), new Illness("Здоров"), 10D);
-        Animal dog1 = new Dog("«Рекс»", new Owner("Халк Хоган"),
+        Animal cat2 = new Cat("Багира", new Owner("Стив Остин"),
+                LocalDate.of(2020, 5, 15), new Illness("Вялость"), 10D);
+        Animal dog = new Dog("«Рекс»", new Owner("Халк Хоган"),
                 LocalDate.of(2020, 6, 10), new Illness("Лишай"));
-        Animal duck1 = new Duck("«Скрудж»", new Owner("Роман Рейнс"),
+        Animal duck = new Duck("«Скрудж»", new Owner("Роман Рейнс"),
                 LocalDate.of(2022, 2, 12), new Illness("Сонливость"));
-        Animal fish1 = new Fish("«Немо»", new Owner("Биг Шоу"),
+        Animal fish = new Fish("«Немо»", new Owner("Биг Шоу"),
                 LocalDate.of(2023, 12, 12), new Illness("бледная"));
+        Animal eagle = new Eagle("«Джек»", new Owner("Голдберг"),
+                LocalDate.of(2023, 12, 12), new Illness("редкие перья"));
+        Animal octopus = new Octopus("«Чернильник»", new Owner("Кенни Омега"),
+                LocalDate.of(2023, 12, 12), new Illness("белые чернила"));
+        Doctor doctorDoolittle = new Doctor();
+        Nurse nurseChapel = new Nurse();
+        Nurse nurseVikki = new Nurse();
 
-        List<Animal> animals = new ArrayList<Animal>();
+        List<Animal> allAnimals = new ArrayList<>();
+        allAnimals.add(cat);
+        allAnimals.add(dog);
+        allAnimals.add(duck);
+        allAnimals.add(fish);
+        allAnimals.add(eagle);
+        allAnimals.add(octopus);
 
-        animals.add(cat1);
-        animals.add(dog1);
-        animals.add(duck1);
-        animals.add(fish1);
+        List<Personal> allStuff = new ArrayList<>();
+        allStuff.add(doctorDoolittle);
+        allStuff.add(nurseChapel);
 
-        for (Animal animal : animals) {
-            System.out.println(animal.getType() + " по имени " + animal.getNickName() + " может: ");
-            animal.toGo();
-            animal.fly();
-            animal.swim();
-            System.out.println("------------");
-        }
+        VeterinaryClinic clinic = new VeterinaryClinic(allAnimals, allStuff);
+        clinic.addAnimal(cat2);
+        clinic.addStuff(nurseVikki);
+
+        System.out.println(clinic.GetAllFlyable(allAnimals));
+        System.out.println("-----------------------------------");
+        System.out.println(clinic.GetAllGoable(allAnimals));
+        System.out.println("-----------------------------------");
+        System.out.println(clinic.GetAllSwimable(allAnimals));
+        System.out.println("-----------------------------------");
+
+        clinic.startWorkingDay(allAnimals, allStuff);
 
     }
 }

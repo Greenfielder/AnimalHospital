@@ -2,7 +2,7 @@ package clients;
 
 import java.time.LocalDate;
 
-public class Animal {
+public abstract class Animal {
 
     // protected видно в классе и во всех наследниках
     protected String nickName;
@@ -71,18 +71,6 @@ public class Animal {
 
     private void sleep() {
         System.out.println("Животное уснуло!");
-    }
-
-    public void toGo() {
-        System.out.println("Животное начало двигаться!");
-    }
-
-    public void fly() {
-        System.out.println("Животное полетело!");
-    }
-
-    public void swim() {
-        System.out.println("Животное поплыло!");
     }
 
     @Override
