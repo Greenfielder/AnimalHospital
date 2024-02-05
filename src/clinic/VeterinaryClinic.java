@@ -25,7 +25,7 @@ public class VeterinaryClinic {
     }
 
     public void addStuff(Personal stuff){
-       personals.add(stuff);
+        personals.add(stuff);
     }
 
     public void addAnimal(Animal patient){
@@ -71,19 +71,19 @@ public class VeterinaryClinic {
         Doctor doctor = new Doctor();
         Nurse nurse = new Nurse();
 
-         for (Animal animal : allAnimals) {
-             for (Personal personal : allstuff) {
-                 if (personal instanceof Therapist) {
-                     doctor = (Doctor) personal;
-                 }
-                 if (personal instanceof Nurses) {
-                     assert personal instanceof Nurse;
-                     nurse = (Nurse) personal;
-                 }
-             }
-             System.out.println("Новый пациент: ");
-             doctor.healing(animal, nurse);
-             System.out.println("- ");
-         }
+        for (Animal animal : allAnimals) {
+            for (Personal personal : allstuff) {
+                if (personal instanceof Therapist) {
+                    doctor = (Doctor) personal;
+                }
+                if (personal instanceof Nurses) {
+                    assert personal instanceof Nurse;
+                    nurse = (Nurse) personal;
+                }
+            }
+            System.out.println("Новый пациент: ");
+            doctor.healing(animal, nurse);
+            System.out.println("- ");
+        }
     }
 }

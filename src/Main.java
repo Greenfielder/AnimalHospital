@@ -24,6 +24,7 @@ public class Main {
                 LocalDate.of(2023, 12, 12), new Illness("редкие перья"));
         Animal octopus = new Octopus("«Чернильник»", new Owner("Кенни Омега"),
                 LocalDate.of(2023, 12, 12), new Illness("белые чернила"));
+
         Doctor doctorDoolittle = new Doctor();
         Nurse nurseChapel = new Nurse();
         Nurse nurseVikki = new Nurse();
